@@ -1,9 +1,10 @@
 # HSD-WBR
 
-This repository contains code for the experiments shown in the paper "Single-shot Star-convex Polygon-based Instance Segmentation for Spatially-correlated Biomedical Objects". [ ] [arXiv paper link](https://arxiv.org/html/2504.12078v1)
+This repository contains code for the experiments shown in the paper "Single-shot Star-convex Polygon-based Instance Segmentation for Spatially-correlated Biomedical Objects". [arXiv paper link](https://arxiv.org/html/2504.12078v1)
 
 ## Citation 
 Please cite as follows:
+
 De, T., Urbanski, A., Yakimovich, A.: Single-shot Star-convex Polygon-based Instance Segmentation for Spatially-correlated Biomedical Objects, http://arxiv.org/abs/2504.12078, (2025). https://doi.org/10.48550/arXiv.2504.12078.
 
 ```
