@@ -48,9 +48,9 @@ conda activate cellpose
 ```
 
 ## Usage
-Please use the scripts under ```examples/2D/models/stardist/```, ```examples/2D_hydra/models/stardist/``` and ```scripts/``` in combination with an appropriate config file from ```configs/``` to run the code. Please change the config with appropriate file and model weight paths.
+Please use the scripts under ```examples/2D/models/stardist/```, ```examples/2D_hydra/models/stardist/``` and ```scripts/``` in combination with an appropriate config file from ```configs/``` to run the code. Please change the config with appropriate data, output and model weight paths.
 
-Since HSD and HSD-WBR our branched architectures share plenty of common functionality with SD, a slight switch is need to ensure the correct methods are being referred to. Please comment out one of the two lines below from ```stardist/models/__init__.py``` to use either a non-branched or branched(hydra) architecture.
+Since HSD and HSD-WBR our branched architectures share plenty of common functionality with SD, a slight switch is needed to ensure the correct methods are being referred to. Please comment out one of the two lines below from ```stardist/models/__init__.py``` to use either a non-branched or branched(hydra) architecture.
 
 ```
 from .model2d import Config2D, StarDist2D, StarDistData2D
