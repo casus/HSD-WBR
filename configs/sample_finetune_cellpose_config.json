@@ -1,0 +1,17 @@
+{   "results_dir": "examples/cellpose/models/",
+    "parameters": {
+        "extension": ".tif",
+        "seed": 11,
+        "train_dir": "/",
+        "val_dir": "",
+        "img_filter": "_img",
+        "mask_filter": "_masks",
+        "look_one_level_down": false,
+        "gpu": true,
+        "pretrained_model":true,
+        "model_type": "",
+        "n_epochs": 300,
+        "save_path": "examples/cellpose/models/cellpose",
+        "save_every": 10
+    }
+}

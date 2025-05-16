@@ -1,0 +1,10 @@
+{
+    "project_result_dir": null,
+    "seed": 0,
+    "conversion": {
+        "source_dir": "",
+        "target_dir": "",
+        "source_type": "tif",
+        "target_type": "tif"
+    }
+}

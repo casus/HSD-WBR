@@ -1,0 +1,21 @@
+{   "results_dir": "examples/2D/models/",
+    "parameters": {
+        "epochs": 400,
+        "branch": 1,
+        "quick_demo": false,
+        "extension": ".tif",
+        "seed": 33
+    },
+    "train": {
+        "img_dir": "",
+        "mask_dir": ""
+    },
+    "validation": {
+        "img_dir": "",
+        "mask_dir": ""
+    },
+    "test": {
+        "img_dir": "",
+        "mask_dir": ""
+    }
+}

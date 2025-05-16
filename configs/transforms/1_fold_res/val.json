@@ -1,0 +1,72 @@
+{
+    "__version__": "1.3.0",
+    "transform": {
+        "__class_fullname__": "Compose",
+        "p": 1.0,
+        "transforms": [
+            {
+                "__class_fullname__": "ToFloat",
+                "always_apply": false,
+                "p": 1.0,
+                "max_value": 255
+            },
+            {
+                "__class_fullname__": "Affine",
+                "always_apply": false,
+                "p": 1,
+                "interpolation": 1,
+                "mask_interpolation": 0,
+                "cval": 0,
+                "mode": 0,
+                "scale": {
+                    "x": [
+                        1.0,
+                        1.0
+                    ],
+                    "y": [
+                        1.0,
+                        1.0
+                    ]
+                },
+                "translate_percent": null,
+                "translate_px": {
+                    "x": [
+                        0,
+                        0
+                    ],
+                    "y": [
+                        0,
+                        0
+                    ]
+                },
+                "rotate": [
+                    0.0,
+                    0.0
+                ],
+                "fit_output": true,
+                "shear": {
+                    "x": [
+                        0.0,
+                        0.0
+                    ],
+                    "y": [
+                        0.0,
+                        0.0
+                    ]
+                },
+                "cval_mask": 0,
+                "keep_ratio": true
+            },
+            {
+                "__class_fullname__": "RandomCrop",
+                "always_apply": false,
+                "p": 1.0,
+                "height": 256,
+                "width": 256
+            }
+        ],
+        "bbox_params": null,
+        "keypoint_params": null,
+        "additional_targets": {}
+    }
+}

@@ -1,0 +1,16 @@
+{   "results_dir": "",
+    "parameters": {
+        "use_gpu": false,
+        "extension": ".tif",
+        "seed": 11,
+        "vacv": true
+    },
+    "test": {
+        "mask1_dir": "",
+        "mask2_dir": ""
+    },
+    "test_pred": {
+        "mask1_dir": "",
+        "mask2_dir": ""
+    }
+}

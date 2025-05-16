@@ -1,0 +1,12 @@
+{
+    "results_dir": null,
+    "parameters": {
+        "seed": 123
+    },
+    "test": {
+        "img_dir": "",
+        "mask_dir": "",
+        "transform_filepath": "configs/transforms/1_fold_res/test.json"
+    }
+
+}

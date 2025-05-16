@@ -1,0 +1,15 @@
+{   "results_dir": "examples/2D/models/",
+    "running_time": "",
+    "parameters": {
+        "branch": 2,
+        "use_gpu": false,
+        "quick_demo": false,
+        "extension": ".tif",
+        "seed": 11
+    },
+    "test": {
+        "img_dir": "",
+        "mask_dir": "",
+        "start_idx": 2408
+    }
+}

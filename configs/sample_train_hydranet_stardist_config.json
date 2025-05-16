@@ -1,0 +1,24 @@
+{   "results_dir": "examples/2D_hydra/models/",
+    "parameters": {
+        "epochs": 400,
+        "quick_demo": false,
+        "train_wbr_loss": false,
+        "extension": ".tif",
+        "seed": 11
+    },
+    "train": {
+        "img_dir": "",
+        "mask1_dir": "",
+        "mask2_dir": ""
+    },
+    "validation": {
+        "img_dir": "",
+        "mask1_dir": "",
+        "mask2_dir": ""
+    },
+    "test": {
+        "img_dir": "",
+        "mask1_dir": "",
+        "mask2_dir": ""
+    }
+}

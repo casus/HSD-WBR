@@ -1,0 +1,15 @@
+{   "results_dir": "examples/cellpose/models/",
+    "running_time": "",
+    "parameters": {
+        "extension": ".tif",
+        "seed": 11,
+        "train_dir": "",
+        "test_dir": "",
+        "img_filter": "_img",
+        "mask_filter": "_masks",
+        "look_one_level_down": false,
+        "gpu": true,
+        "model_type": ""
+
+    }
+}
