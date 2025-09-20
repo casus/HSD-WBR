@@ -1,9 +1,11 @@
 {   "results_dir": "",
+    "running_time1": "",
+    "running_time2": "",
     "parameters": {
         "use_gpu": false,
         "extension": ".tif",
         "seed": 11,
-        "vacv": true
+        "vacv": false
     },
     "test": {
         "mask1_dir": "",

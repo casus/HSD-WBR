@@ -2,12 +2,14 @@
     "running_time": "",
     "parameters": {
         "branch": 1,
+        "use_gpu": true,
         "quick_demo": false,
         "extension": ".tif",
         "seed": 11
     },
     "test": {
         "img_dir": "",
-        "mask_dir": ""
+        "mask_dir": "",
+        "start_idx": 0
     }
 }

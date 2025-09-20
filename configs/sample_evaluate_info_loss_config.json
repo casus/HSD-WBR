@@ -1,11 +1,59 @@
 {
+    "auth_config_path": "",
     "results_dir": null,
+    "checkpoint_file_path": null,
+    "encoder_weights_path": null,
+    "backbone_weights_path": null,
+    "unfreeze": {
+        "start_after": 40,
+        "frequency": 5
+    },
+    "use_neptune": true,
+    "neptune_args": {
+        "name": "",
+        "project": ""
+    },
     "parameters": {
-        "seed": 123
+        "loss_function": "",
+        "metrics": null,
+        "residual_connections": false,
+        "n": 5,
+        "seed": 123,
+        "epochs": 750,
+        "smooth": 1,
+        "start_lr": 1e-2,
+        "target_width": 256,
+        "target_height": 256,
+        "num_classes": 1,
+        "num_samples": null,
+        "thresh_obj_perc": 0.01,
+        "max_iters": 10,
+        "val_freq": 1,
+        "samples_per_epoch": 1000,
+        "n_filters": 32,
+        "dropout": 0.1,
+        "l2_regularization": 1e-4,
+        "scheduler": {
+            "step_size": 50,
+            "gamma": 0.95
+        }
+    },
+    "train": {
+        "img_dir": "",
+        "mask_dir": "",
+        "batch_size": 1,
+        "transform_filepath": "."
+    },
+    "validation": {
+        "img_dir": "",
+        "mask_dir": "",
+        "batch_size": 1,
+        "transform_filepath": ""
     },
     "test": {
         "img_dir": "",
         "mask_dir": "",
+        "batch_size": 1,
         "transform_filepath": "configs/transforms/1_fold_res/test.json"
     }
 

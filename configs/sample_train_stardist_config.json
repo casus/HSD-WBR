@@ -2,8 +2,11 @@
     "parameters": {
         "epochs": 400,
         "branch": 1,
+        "use_gpu": true,
         "quick_demo": false,
         "extension": ".tif",
+        "finetune": false,
+        "train_background_reg": 0.0001,
         "seed": 33
     },
     "train": {

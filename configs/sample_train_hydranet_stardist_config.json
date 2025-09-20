@@ -1,8 +1,10 @@
 {   "results_dir": "examples/2D_hydra/models/",
     "parameters": {
         "epochs": 400,
+        "use_gpu": true,
         "quick_demo": false,
         "train_wbr_loss": false,
+        "train_background_reg": 0.0001,
         "extension": ".tif",
         "seed": 11
     },

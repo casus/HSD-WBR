@@ -1,6 +1,7 @@
 {   "results_dir": "examples/2D_hydra/models/",
     "running_time": "",
     "parameters": {
+        "use_gpu": true,
         "quick_demo": false,
         "train_wbr_loss": true,
         "extension": ".tif",
@@ -8,6 +9,12 @@
     },
     "test": {
         "img_dir": "",
+        "mask1_dir": "",
+        "mask2_dir": "",
+        "start_idx": 0
+
+    },
+    "test_pred": {
         "mask1_dir": "",
         "mask2_dir": ""
     }
