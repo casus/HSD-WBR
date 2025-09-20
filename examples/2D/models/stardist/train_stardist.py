@@ -139,8 +139,6 @@ def main(config_file_path):
         # limit_gpu_memory(0.8)
         limit_gpu_memory(None, allow_growth=True)
         
-    
-
     # Initialize model to train
     if parameters["finetune"]:
         # Initialize pretrained model

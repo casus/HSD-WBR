@@ -30,6 +30,7 @@ from stardist.src.utils.config import read_json_config
 @click.argument('config_file_path', type=click.Path(exists=True))
 def main(config_file_path):
     config = read_json_config(config_file_path)
+    running_time = config["running_time2"]
     parameters = config["parameters"]
 
     np.random.seed(int(parameters["seed"]))
@@ -46,6 +47,11 @@ def main(config_file_path):
     Y1_tst, Y2_tst = load_and_preprocess_data_eval(Y1=Y1_tst,Y2=Y2_tst)
     # Process predicted data
     Y1_tst_pred, Y2_tst_pred = load_and_preprocess_data_eval(Y1=Y1_tst_pred,Y2=Y2_tst_pred)
+
+    # Creating log directory
+    model_dir = 'stardist' + '/' + f'{running_time}' 
+    log_dir = model_dir + '_pred'
+    Path(config["results_dir"]+log_dir).mkdir(parents=True,exist_ok=True)
 
     # Assembling configuration details for training
     use_gpu = parameters["use_gpu"] and gputools_available()
