@@ -1,7 +1,9 @@
 from __future__ import absolute_import, print_function
 
-# from .model2d import Config2D, StarDist2D, StarDistData2D
-from .model2d_hydra import Config2D, StarDist2D, StarDistData2D
+from .model2d import Config2D, StarDist2D, StarDistData2D
+# from .model2d_hydra import Config2D, StarDist2D, StarDistData2D
+# from .model2d_hydra3 import Config2D, StarDist2D, StarDistData2D
+
 
 from csbdeep.utils import backend_channels_last
 from csbdeep.utils.tf import keras_import

@@ -1,0 +1,31 @@
+{   "results_dir": "",
+    "parameters": {
+        "epochs": 400,
+        "use_gpu": true,
+        "quick_demo": false,
+        "train_wbr_loss_exclusive": false,
+        "train_wbr_loss_overlap": true,
+        "wbr_loss_weight": 1,
+        "train_background_reg": 0.0001,
+        "extension": ".tif",
+        "seed": 33
+    },
+    "train": {
+        "img_dir": "",
+        "mask1_dir": "",
+        "mask2_dir": "",
+        "mask3_dir": ""
+    },
+    "validation": {
+        "img_dir": "",
+        "mask1_dir": "",
+        "mask2_dir": "",
+        "mask3_dir": ""
+    },
+    "test": {
+        "img_dir": "",
+        "mask1_dir": "",
+        "mask2_dir": "",
+        "mask3_dir": ""
+    }
+}

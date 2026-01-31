@@ -77,6 +77,25 @@ def load_and_preprocess_data_hydra(X, Y1, Y2):
     Y2 = [fill_label_holes(y2) for y2 in tqdm(Y2)]
     return X, Y1, Y2
 
+def load_and_preprocess_data_hydra3(X, Y1, Y2, Y3):
+    X = list(map(imread,X))
+    Y1 = list(map(imread,Y1))
+    Y2 = list(map(imread,Y2))
+    Y3 = list(map(imread,Y3))
+    n_channel = 1 if X[0].ndim == 2 else X[0].shape[-1]
+
+    axis_norm = (0,1)   # normalize channels independently
+    # axis_norm = (0,1,2) # normalize channels jointly
+    if n_channel > 1:
+        print("Normalizing image channels %s." % ('jointly' if axis_norm is None or 2 in axis_norm else 'independently'))
+        sys.stdout.flush()
+
+    X = [normalize(x,0,100, axis=axis_norm) for x in tqdm(X)]
+    Y1 = [fill_label_holes(y1) for y1 in tqdm(Y1)]
+    Y2 = [fill_label_holes(y2) for y2 in tqdm(Y2)]
+    Y3 = [fill_label_holes(y3) for y3 in tqdm(Y3)]
+    return X, Y1, Y2, Y3
+
 def load_and_preprocess_data_eval(Y1, Y2):
     Y1 = list(map(imread,Y1))
     Y2 = list(map(imread,Y2))
@@ -84,6 +103,16 @@ def load_and_preprocess_data_eval(Y1, Y2):
     Y1 = [fill_label_holes(y1) for y1 in tqdm(Y1)]
     Y2 = [fill_label_holes(y2) for y2 in tqdm(Y2)]
     return Y1, Y2
+
+def load_and_preprocess_data_eval_hydra3(Y1, Y2, Y3):
+    Y1 = list(map(imread,Y1))
+    Y2 = list(map(imread,Y2))
+    Y3  = list(map(imread,Y3))
+
+    Y1 = [fill_label_holes(y1) for y1 in tqdm(Y1)]
+    Y2 = [fill_label_holes(y2) for y2 in tqdm(Y2)]
+    Y3 = [fill_label_holes(y3) for y3 in tqdm(Y3)]
+    return Y1, Y2, Y3
 
 def plot_img_label(img, lbl, img_title="image", lbl_title=["label"], **kwargs):
     fig, (ai,aj) = plt.subplots(1,2, figsize=(12,5), gridspec_kw=dict(width_ratios=(1.25,1)))
@@ -103,6 +132,19 @@ def plot_img_label_hydra(img, lbl1, lbl2, img_title="image", lbl_title=["label1"
     aj.set_title(lbl_title[0])
     ak.imshow(lbl2, cmap=lbl_cmap)
     ak.set_title(lbl_title[1])
+    plt.tight_layout()
+
+def plot_img_label_hydra3(img, lbl1, lbl2, lbl3, img_title="image", lbl_title=["label1", "label2", "label3"], **kwargs):
+    fig, (ai,aj,ak,al) = plt.subplots(1,4, figsize=(17,5), gridspec_kw=dict(width_ratios=(1.25,1,1,1)))
+    im = ai.imshow(img, cmap='gray', clim=(0,1))
+    ai.set_title(img_title)    
+    fig.colorbar(im, ax=ai)
+    aj.imshow(lbl1, cmap=lbl_cmap)
+    aj.set_title(lbl_title[0])
+    ak.imshow(lbl2, cmap=lbl_cmap)
+    ak.set_title(lbl_title[1])
+    al.imshow(lbl3, cmap=lbl_cmap)
+    al.set_title(lbl_title[2])
     plt.tight_layout()
 
 def check_fov(Y, model):
@@ -143,6 +185,24 @@ def random_fliprot_hydra(img, mask1, mask2):
             flipped = True
     return img, mask1, mask2, flipped
 
+def random_fliprot_hydra3(img, mask1, mask2, mask3): 
+    assert img.ndim >= mask1.ndim == mask2.ndim == mask3.ndim
+    axes = tuple(range(mask1.ndim))
+    perm = tuple(np.random.permutation(axes))
+    img = img.transpose(perm + tuple(range(mask1.ndim, img.ndim))) 
+    mask1 = mask1.transpose(perm) 
+    mask2 = mask2.transpose(perm)
+    mask3 = mask3.transpose(perm)
+    flipped = False
+    for ax in axes: 
+        if np.random.rand() > 0.5:
+            img = np.flip(img, axis=ax)
+            mask1 = np.flip(mask1, axis=ax)
+            mask2 = np.flip(mask2, axis=ax)
+            mask3 = np.flip(mask3, axis=ax)
+            flipped = True
+    return img, mask1, mask2, mask3, flipped
+
 def random_intensity_change(img):
     img = img*np.random.uniform(0.6,2) + np.random.uniform(-0.2,0.2)
     return img
@@ -170,6 +230,18 @@ def augmenter_hydra(x, y1, y2):
     sig = 0.02*np.random.uniform(0,1)
     x = x + sig*np.random.normal(0,1,x.shape)
     return x, y1, y2
+
+def augmenter_hydra3(x, y1, y2, y3):
+    """Augmentation of a single input/label image pair.
+    x is an input image
+    y is the corresponding ground-truth label image
+    """
+    x, y1, y2, y3, flipped = random_fliprot_hydra3(x, y1, y2, y3)
+    x = random_intensity_change(x)
+    # add some gaussian noise
+    sig = 0.02*np.random.uniform(0,1)
+    x = x + sig*np.random.normal(0,1,x.shape)
+    return x, y1, y2, y3
 
 def plot_metrics_vs_tau(stats,branch,log_dir, results_dir):
     taus = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
@@ -251,6 +323,49 @@ def example_hydra(model, X, Y1, Y2, i, log_dir, results_dir, show_dist=True):
     plt.tight_layout()
     path = Path(results_dir+log_dir+'/plots/'+'prediction_overlayed_'+str(i)+'.svg')
     plt.savefig(path)
+
+def example_hydra3(model, X, Y1, Y2, Y3, i, log_dir, results_dir, show_dist=True):
+    axis_norm = (0,1)
+    img = normalize(X[i], 0,100, axis=axis_norm)
+    labels1, labels2, labels3 = model.predict_instances(img,prob_thresh1=model.thresholds1['prob'], prob_thresh2=model.thresholds2['prob'],
+                            prob_thresh3 = model.thresholds3['prob'], nms_thresh1=model.thresholds1['nms'], 
+                            nms_thresh2=model.thresholds2['nms'], nms_thresh3=model.thresholds3['nms'])
+
+    details1 = labels1[1]
+    labels1 = labels1[0]
+
+    details2 = labels2[1]
+    labels2 = labels2[0]
+
+    details3 = labels3[1]
+    labels3 = labels3[0]
+
+    plt.figure(figsize=(15,10))
+    img_show = img if img.ndim==2 else img[...,0]
+    coord1, points1, prob1 = details1['coord'], details1['points'], details1['prob']
+    coord2, points2, prob2 = details2['coord'], details2['points'], details2['prob']
+    coord3, points3, prob3 = details3['coord'], details3['points'], details3['prob']
+
+    plt.subplot(141); plt.imshow(img_show, cmap='gray'); plt.subplot(141).set_title('prediction1'); plt.axis('off')
+    a = plt.axis()
+    _draw_polygons(coord1, points1, prob1, show_dist=show_dist)
+    plt.axis(a)
+    plt.subplot(142); plt.imshow(img_show, cmap='gray'); plt.subplot(142).set_title('prediction2'); plt.axis('off')
+    b = plt.axis()
+    _draw_polygons(coord2, points2, prob2, show_dist=show_dist)
+    plt.axis(b)
+    plt.subplot(143); plt.imshow(img_show, cmap='gray'); plt.subplot(143).set_title('prediction3'); plt.axis('off')
+    c = plt.axis()
+    _draw_polygons(coord3, points3, prob3, show_dist=show_dist)
+    plt.axis(c)
+    plt.subplot(144); plt.imshow(img_show, cmap='gray'); plt.subplot(144).set_title('ground truth'); plt.axis('off')
+    plt.imshow(Y1[i], cmap=lbl_cmap, alpha=0.25)
+    plt.imshow(Y2[i], cmap=lbl_cmap, alpha=0.25)
+    plt.imshow(Y3[i], cmap=lbl_cmap, alpha=0.25)
+    plt.tight_layout()
+    path = Path(results_dir+log_dir+'/plots/'+'prediction_overlayed_'+str(i)+'.svg')
+    plt.savefig(path)
+
 
 def create_assimilated_dict(l1,l2,l3,metric):
     assimilated_dict = dict()

@@ -30,6 +30,7 @@ def example_cellpose(model, X, Y, i, log_dir, results_dir):
     plt.imshow(Y.astype(np.uint32), cmap=lbl_cmap, alpha=0.5)
     plt.tight_layout()
     path = Path(results_dir+log_dir+'/plots/'+'prediction_overlayed_'+str(i)+'.svg')
+    path.parents[0].mkdir(parents=True,exist_ok=True)
     print(path)
     plt.savefig(path)
 

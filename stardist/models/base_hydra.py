@@ -668,7 +668,7 @@ class StarDistBase(BaseModel):
 
                     p2 = results_tile2[2][s_src].copy()
                     p2 = np.moveaxis(p2,channel,-1)
-                    prob_class1a.extend(p2[inds2])
+                    prob_class2a.extend(p2[inds2])
                 yield  # yield None after each processed tile
 
         else:
@@ -1007,7 +1007,7 @@ class StarDistBase(BaseModel):
         # create block cover
         blocks = BlockND.cover(img.shape, axes, block_size, min_overlap, context, grid)
 
-        if np.isscalar(labels_out1) and bool(labels_out1) is False and np.isscalar(labels_out1) and \
+        if np.isscalar(labels_out1) and bool(labels_out1) is False and np.isscalar(labels_out2) and \
         bool(labels_out2) is False :
             labels_out1 = None
             labels_out2 = None

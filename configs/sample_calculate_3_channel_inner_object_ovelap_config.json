@@ -1,0 +1,10 @@
+{
+    "project_result_dir": "",
+    "parameters": {
+        "circle_mask_dir": "",
+        "star_mask_dir": "",
+        "circle_threshold": 0,
+        "star_threshold": 0,
+        "target_type": "tif"
+    }
+}

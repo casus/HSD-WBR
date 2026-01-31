@@ -1,0 +1,13 @@
+{
+    "project_result_dir": "",
+    "parameters": {
+        "seed": 42,
+        "img_h": 128,
+        "img_w": 128,
+        "inner_object_exclusive": true,
+        "n_images": 10,
+        "n_obj_inst_min": 3,
+        "n_obj_inst_max": 10,
+        "target_type": "tif"
+    }
+}

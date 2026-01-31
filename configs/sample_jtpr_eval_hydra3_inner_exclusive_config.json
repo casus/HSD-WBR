@@ -1,0 +1,21 @@
+{   "results_dir": "",
+    "running_time1": "",
+    "running_time2": "",
+    "running_time3": "",
+    "parameters": {
+        "branch": 2,
+        "use_gpu": false,
+        "extension": ".tif",
+        "seed": 11,
+        "data_type": "de"
+    },
+    "test": {
+        "mask1_dir": "",
+        "mask2_dir": "",
+        "mask3_dir": ""
+    },
+    "test_pred": {
+        "mask1_dir": "",
+        "mask2_dir": "",
+        "mask3_dir": ""
+}
