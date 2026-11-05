@@ -1,0 +1,15 @@
+{
+    "results_dir": "examples/mobilesam/models/",
+    "parameters": {
+        "checkpoint_path": "examples/mobilesam/models/mobilesam_latest/mobilesam_final.pt",
+        "use_gpu": true,
+        "extension": ".tif",
+        "log_dir": "predictions"
+    },
+    "test": {
+        "img_dir": "data/test/images/",
+        "mask1_dir": "data/test/mask1/",
+        "mask2_dir": "data/test/mask2/"
+    }
+}
+

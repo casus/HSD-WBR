@@ -1,0 +1,21 @@
+name: mobilesam
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - numpy>=1.23.0
+  - scipy
+  - matplotlib
+  - tqdm
+  - click
+  - tifffile
+  - imageio
+  - scikit-image
+  - torchvision
+  - pip:
+    - mobile-sam @ git+https://github.com/ChaoningZhang/MobileSAM.git
+    - csbdeep
+
